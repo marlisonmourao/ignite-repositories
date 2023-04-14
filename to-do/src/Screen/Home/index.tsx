@@ -35,7 +35,7 @@ export function Home() {
   function handleRemoveTask(tasks: string) {
     setTask(task.filter((task) => task !== tasks));
   }
-
+  
   return (
     <Container>
       <Header>
@@ -52,6 +52,7 @@ export function Home() {
           <Input
             placeholder="Adicione uma tarefa"
             onChangeText={setNewTask}
+            onSubmitEditing={createNewTask}
             value={newTask}
           />
 

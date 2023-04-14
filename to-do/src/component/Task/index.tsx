@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Check, Pencil, Trash } from "phosphor-react-native";
 import { ButtonCheck, Container, TaskMessage, Message, WrapperButtonIcon, Separator } from "./styles";
-import { useState } from "react";
 
 interface Props {
   title: string;
