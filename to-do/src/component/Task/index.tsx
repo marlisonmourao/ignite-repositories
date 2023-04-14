@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
-import { Check, Trash } from "phosphor-react-native";
-import { ButtonCheck, Container, TaskMessage, Message } from "./styles";
+import { Check, Pencil, Trash } from "phosphor-react-native";
+import { ButtonCheck, Container, TaskMessage, Message, WrapperButtonIcon, Separator } from "./styles";
 import { useState } from "react";
 
 interface Props {
@@ -16,18 +16,26 @@ export function Task({ title, onRemove }: Props) {
   }
 
   return (
-    <Container>
+    <Container active={checked}>
       <ButtonCheck active={checked} onPress={handleChecked}>
-        {checked ? <Check size={15} color="#FFF" /> : ""}
+        {checked ? <Check size={10} color="#FFF" /> : ""}
       </ButtonCheck>
 
       <Message>
         <TaskMessage active={checked}>{title}</TaskMessage>
       </Message>
 
-      <TouchableOpacity onPress={onRemove}>
-        <Trash />
-      </TouchableOpacity>
+      <WrapperButtonIcon>
+        <TouchableOpacity>
+          <Pencil size={20} />
+        </TouchableOpacity>
+
+        <Separator />
+
+        <TouchableOpacity onPress={onRemove}>
+          <Trash size={20} />
+        </TouchableOpacity>
+      </WrapperButtonIcon>
     </Container>
   );
 }

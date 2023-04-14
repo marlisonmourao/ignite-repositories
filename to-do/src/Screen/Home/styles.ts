@@ -12,8 +12,8 @@ export const Header = styled.View`
 `;
 
 export const Content = styled.View`
-  padding: 0 24px;
   margin-top: -25px;
+  padding: 0 24px;
 `;
 
 export const LogoWrapper = styled.View`
@@ -47,13 +47,11 @@ export const InputWrapper = styled.View`
   align-items: center;
   border-radius: 5px;
 
-  position: relative;
-
   margin-bottom: 32px;
 `;
 
 export const Input = styled.TextInput`
-  width: 100%;
+  width: 90%;
   height: 56px;
 
   font-size: 15px;
@@ -62,12 +60,5 @@ export const Input = styled.TextInput`
 `
 
 export const ButtonSubmit = styled.TouchableOpacity`
-  width: 6px;
-  height: 11px;
-
-  position: absolute;
-
-  right: 30px;
-  top: 15px;
 `
 

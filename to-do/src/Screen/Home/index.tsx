@@ -49,28 +49,25 @@ export function Home() {
 
       <Content>
         <InputWrapper>
-          <Input 
-            placeholder="Adicione uma tarefa" 
-            onChangeText={setNewTask} 
-            value={newTask} 
+          <Input
+            placeholder="Adicione uma tarefa"
+            onChangeText={setNewTask}
+            value={newTask}
           />
 
           <ButtonSubmit onPress={createNewTask}>
             <ArrowRight />
           </ButtonSubmit>
         </InputWrapper>
-
-        <FlatList
-          data={task}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => (
-            <Task
-              onRemove={() => handleRemoveTask(item)}
-              title={item}
-            />
-          )}
-        />
       </Content>
+
+      <FlatList
+        data={task}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <Task onRemove={() => handleRemoveTask(item)} title={item} />
+        )}
+      />
     </Container>
   );
 }
