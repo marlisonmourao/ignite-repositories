@@ -60,7 +60,7 @@ export function Home() {
   // }
 
   useFocusEffect(useCallback(() => {
-    loadData();
+    loadData()
   }, []));
 
   return (

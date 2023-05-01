@@ -49,6 +49,14 @@ export function RegisterLoginData() {
     resolver: yupResolver(schema)
   });
 
+  async function saveGetAll() {
+    const storage = await AsyncStorage.getItem('@savepass:logins');
+
+    const data = storage ? JSON.parse(storage) : null;
+
+    return data
+  }
+
   async function handleRegister(formData: FormData) {
     const newLoginData = {
       id: String(uuid.v4()),
@@ -57,9 +65,11 @@ export function RegisterLoginData() {
 
     const dataKey = '@savepass:logins';
 
-    AsyncStorage
-    .setItem(dataKey, JSON.stringify([newLoginData]))
-    .then(() => navigate('Home'))
+    const data = await saveGetAll();
+
+    AsyncStorage.setItem(dataKey, JSON.stringify([...data, newLoginData])).then(() =>
+      navigate("Home")
+    );
   }
 
   return (
