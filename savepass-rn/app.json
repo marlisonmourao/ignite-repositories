@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "savepass-rn",
+    "slug": "savepass-rn",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
