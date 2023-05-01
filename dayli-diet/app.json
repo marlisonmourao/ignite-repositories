@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "dayli-diet",
+    "slug": "dayli-diet",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
