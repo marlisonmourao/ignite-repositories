@@ -18,7 +18,7 @@ export function Button({
   const Icon = checked ? Plus : PencilSimpleLine
 
   return (
-    <Container variant={variant} {...rest}>
+    <Container variant={variant} activeOpacity={0.7} {...rest}>
       <Icon color={variant === 'primary' ? '#fff' : '#000'} />
       <Title variant={variant}>{title}</Title>
     </Container>
