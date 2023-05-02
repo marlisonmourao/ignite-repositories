@@ -46,3 +46,9 @@ export const Icon = styled.View`
   top: 8px;
   right: 8px;
 `
+
+export const IconLeft = styled.View`
+  position: absolute;
+  top: 20px;
+  left: 24px;
+`

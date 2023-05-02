@@ -14,12 +14,17 @@ export const Logo = styled.Image`
 `
 
 export const UserPhotoContainer = styled.View`
-  border: 2px solid ${({ theme }) => theme.colors.gray_200};
+  /* width: 40px;
+  height: 40px; */
+  border: 4px solid ${({ theme }) => theme.colors.gray_200};
   border-radius: 9999px;
+
+  align-items: center;
+  justify-content: center;
 `
 
 export const Photo = styled.Image`
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
   border-radius: 20px;
 `
