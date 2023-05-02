@@ -9,7 +9,7 @@ type Props = TouchableOpacityProps & {
   success: boolean
 }
 
-export function PorcentCard({ porcent, success }: Props) {
+export function PorcentCard({ porcent, success = true }: Props) {
   const { colors } = useTheme()
 
   return (
@@ -19,7 +19,10 @@ export function PorcentCard({ porcent, success }: Props) {
         <Label>das refeições dentro da dieta</Label>
       </PorcentWrapper>
       <Icon>
-        <ArrowUpRight size={24} color={colors.green_dark} />
+        <ArrowUpRight
+          size={24}
+          color={success ? colors.green_dark : colors.red_dark}
+        />
       </Icon>
     </Container>
   )
