@@ -7,19 +7,21 @@ type Props = TouchableOpacityProps & {
   title: string
   variant?: ButtonColorProps
   checked?: boolean
+  iconVisible?: boolean
 }
 
 export function Button({
   title,
   checked = true,
   variant = 'primary',
+  iconVisible,
   ...rest
 }: Props) {
   const Icon = checked ? Plus : PencilSimpleLine
 
   return (
     <Container variant={variant} activeOpacity={0.7} {...rest}>
-      <Icon color={variant === 'primary' ? '#fff' : '#000'} />
+      {iconVisible && <Icon color={variant === 'primary' ? '#fff' : '#000'} />}
       <Title variant={variant}>{title}</Title>
     </Container>
   )
