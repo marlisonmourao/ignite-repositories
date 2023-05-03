@@ -1,3 +1,4 @@
+import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 
 import {
@@ -6,11 +7,10 @@ import {
   NunitoSans_700Bold,
 } from '@expo-google-fonts/nunito-sans'
 
-import { Home } from '@screens/Home'
 import theme from './src/theme'
 
 import { Loading } from '@components/Loading'
-import { StatusBar } from 'react-native'
+import { Statistics } from '@screens/Statistics'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Home /> : <Loading />}
+      {fontsLoaded ? <Statistics /> : <Loading />}
     </ThemeProvider>
   )
 }
