@@ -4,7 +4,7 @@ type PropsCircleStatus = {
   success: boolean
 }
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: 100%;
   padding: 14px 16px 14px 12px;
   margin-bottom: 12px;

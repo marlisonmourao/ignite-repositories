@@ -47,6 +47,10 @@ export function Home() {
     navigation.navigate('statistics')
   }
 
+  function handleDetails(id: string) {
+    navigation.navigate('details', { id })
+  }
+
   return (
     <Container>
       <UserAndLogo />
@@ -54,12 +58,19 @@ export function Home() {
 
       <Label>Refeições</Label>
 
-      <Button variant="primary" title="Nova refeição" onPress={handleNewFood} />
+      <Button
+        checked
+        variant="primary"
+        title="Nova refeição"
+        onPress={handleNewFood}
+      />
 
       <SectionList
         sections={history}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <DayCard data={item} />}
+        renderItem={({ item }) => (
+          <DayCard data={item} onPress={() => handleDetails(item.id)} />
+        )}
         renderSectionHeader={({ section }) => (
           <HeaderList>{section.title}</HeaderList>
         )}

@@ -1,3 +1,4 @@
+import { TouchableOpacityProps } from 'react-native'
 import { HistoryDTO } from '@dtos/historyDTO'
 import {
   CircleStatus,
@@ -8,13 +9,12 @@ import {
   TimeWrapper,
 } from './styles'
 
-type Props = {
+type Props = TouchableOpacityProps & {
   data: HistoryDTO
 }
-
-export function DayCard({ data }: Props) {
+export function DayCard({ data, ...rest }: Props) {
   return (
-    <Container>
+    <Container activeOpacity={0.7} {...rest}>
       <TimeWrapper>
         <Hours>{data.hours}</Hours>
         <Separator />
