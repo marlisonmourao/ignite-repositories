@@ -14,7 +14,7 @@ export function Button({
   title,
   checked = true,
   variant = 'primary',
-  iconVisible,
+  iconVisible = true,
   ...rest
 }: Props) {
   const Icon = checked ? Plus : PencilSimpleLine
