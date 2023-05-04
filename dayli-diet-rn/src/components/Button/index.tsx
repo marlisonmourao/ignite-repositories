@@ -12,7 +12,7 @@ type Props = TouchableOpacityProps & {
 
 export function Button({
   title,
-  checked = true,
+  checked,
   variant = 'primary',
   iconVisible = true,
   ...rest

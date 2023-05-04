@@ -24,7 +24,7 @@ export const Container = styled.TouchableOpacity<ButtonProps>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 21px;
+  gap: 12px;
 `
 
 export const Title = styled.Text<ButtonProps>`
