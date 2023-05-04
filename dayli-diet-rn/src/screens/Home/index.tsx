@@ -1,12 +1,15 @@
 import { useState } from 'react'
-import { Button } from '@components/Button'
+import { SectionList } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+
 import { Container, HeaderList, Label } from './styles'
 
 import { Header } from '@components/Header'
 import { PorcentCard } from '@components/PorcentCard'
 import { DayCard } from '@components/DayCard'
+import { Button } from '@components/Button'
+
 import { HistoryByDayDTO } from '@dtos/historyByDayDTO'
-import { SectionList } from 'react-native'
 
 export function Home() {
   const [history, setHistory] = useState<HistoryByDayDTO[]>([
@@ -34,14 +37,24 @@ export function Home() {
     },
   ])
 
+  const navigation = useNavigation()
+
+  function handleNewFood() {
+    navigation.navigate('new')
+  }
+
+  function handleStatistics() {
+    navigation.navigate('statistics')
+  }
+
   return (
     <Container>
       <Header />
-      <PorcentCard porcent="98,9" success={true} />
+      <PorcentCard porcent="98,9" success={true} onPress={handleStatistics} />
 
       <Label>Refeições</Label>
 
-      <Button variant="primary" title="Nova refeição" />
+      <Button variant="primary" title="Nova refeição" onPress={handleNewFood} />
 
       <SectionList
         sections={history}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { HeaderNewMeal } from '@components/HeaderNewMeal'
+import { useNavigation } from '@react-navigation/native'
 import {
   ButtonWrapper,
   Container,
@@ -8,15 +8,29 @@ import {
   InputWrapper,
   Label,
 } from './styles'
+
 import { Input } from '@components/Input'
+import { HeaderNewMeal } from '@components/HeaderNewMeal'
 import { RadioButton } from '@components/RadioButton'
 import { Button } from '@components/Button'
 
 export function NewMeal() {
-  const [mealOk, setMealOk] = useState<'sim' | 'nao' | undefined>()
+  const [mealOk, setMealOk] = useState<'success' | 'failed'>()
+  console.log(mealOk)
+
+  const navigation = useNavigation()
+
+  function handleGoBack() {
+    navigation.goBack()
+  }
+
+  function handleSubmit() {
+    navigation.navigate('feedback', { mealOk })
+  }
+
   return (
     <Container>
-      <HeaderNewMeal onBack={() => {}} title="Nova refeição" />
+      <HeaderNewMeal onBack={handleGoBack} title="Nova refeição" />
 
       <Form>
         <InputWrapper>
@@ -47,17 +61,17 @@ export function NewMeal() {
           <RadioButton
             title="Sim"
             type="PRIMARY"
-            onPress={() => setMealOk('sim')}
-            isActive={mealOk === 'sim'}
+            onPress={() => setMealOk('success')}
+            isActive={mealOk === 'success'}
           />
           <RadioButton
             title="Não"
             type="SECONDARY"
-            onPress={() => setMealOk('nao')}
-            isActive={mealOk === 'nao'}
+            onPress={() => setMealOk('failed')}
+            isActive={mealOk === 'failed'}
           />
         </ButtonWrapper>
-        <Button title="Cadastrar refeição" />
+        <Button onPress={handleSubmit} title="Cadastrar refeição" />
       </Form>
     </Container>
   )

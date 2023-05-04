@@ -10,7 +10,7 @@ import {
 import theme from './src/theme'
 
 import { Loading } from '@components/Loading'
-import { NewMeal } from '@screens/NewMeal'
+import { Routes } from '@routes/index'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <NewMeal /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   )
 }
