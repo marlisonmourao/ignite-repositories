@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { Container, HeaderList, Label } from './styles'
 
-import { Header } from '@components/Header'
+import { UserAndLogo } from '@components/UserAndLogo'
 import { PorcentCard } from '@components/PorcentCard'
 import { DayCard } from '@components/DayCard'
 import { Button } from '@components/Button'
@@ -49,7 +49,7 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
+      <UserAndLogo />
       <PorcentCard porcent="98,9" success={true} onPress={handleStatistics} />
 
       <Label>Refeições</Label>

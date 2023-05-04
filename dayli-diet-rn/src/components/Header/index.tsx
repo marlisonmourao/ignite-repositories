@@ -1,14 +1,24 @@
-import { Container, Logo, Photo, UserPhotoContainer } from './styles'
+import { useTheme } from 'styled-components'
+import { Box, Container, Title } from './styles'
 
-import LogoImg from '@assets/Logo.png'
+import { ArrowLeft } from 'phosphor-react-native'
+import { TouchableOpacity } from 'react-native'
 
-export function Header() {
+type Props = {
+  title: string
+  onBack: () => void
+}
+
+export function Header({ title, onBack }: Props) {
+  const { colors } = useTheme()
+
   return (
     <Container>
-      <Logo source={LogoImg} />
-      <UserPhotoContainer>
-        <Photo source={{ uri: 'https://github.com/marlisonmourao.png' }} />
-      </UserPhotoContainer>
+      <TouchableOpacity activeOpacity={0.7} onPress={() => onBack()}>
+        <ArrowLeft size={24} color={colors.gray_200} />
+      </TouchableOpacity>
+      <Title>{title}</Title>
+      <Box />
     </Container>
   )
 }

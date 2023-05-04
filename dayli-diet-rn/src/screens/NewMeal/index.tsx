@@ -10,13 +10,12 @@ import {
 } from './styles'
 
 import { Input } from '@components/Input'
-import { HeaderNewMeal } from '@components/HeaderNewMeal'
+import { Header } from '@components/Header'
 import { RadioButton } from '@components/RadioButton'
 import { Button } from '@components/Button'
 
 export function NewMeal() {
   const [mealOk, setMealOk] = useState<'success' | 'failed'>()
-  console.log(mealOk)
 
   const navigation = useNavigation()
 
@@ -30,7 +29,7 @@ export function NewMeal() {
 
   return (
     <Container>
-      <HeaderNewMeal onBack={handleGoBack} title="Nova refeição" />
+      <Header onBack={handleGoBack} title="Nova refeição" />
 
       <Form>
         <InputWrapper>
