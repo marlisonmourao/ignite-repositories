@@ -21,11 +21,12 @@ export function PorcentCard({
   porcent,
   success = true,
   variant = 'primary',
+  ...rest
 }: Props) {
   const { colors } = useTheme()
 
   return (
-    <Container success={success} activeOpacity={0.7}>
+    <Container success={success} activeOpacity={0.7} {...rest}>
       <PorcentWrapper>
         <Porcent>{porcent}%</Porcent>
         <Label>das refeições dentro da dieta</Label>
