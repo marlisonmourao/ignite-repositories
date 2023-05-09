@@ -1,8 +1,8 @@
 type MealStatusProps = {
   status: boolean
-}[]
+}
 
-export function CalcPorcentDiet(mealStatus: MealStatusProps): string {
+export function CalcPorcentDiet(mealStatus: MealStatusProps[]): number {
   const totalMealStatus: number = mealStatus.length
   let resultTotal: number = 0
 
@@ -12,7 +12,7 @@ export function CalcPorcentDiet(mealStatus: MealStatusProps): string {
     }
   }
 
-  const result = (totalMealStatus / resultTotal) * 100
+  const result: number = (resultTotal / totalMealStatus) * 100
 
-  return result.toFixed(2)
+  return result
 }
