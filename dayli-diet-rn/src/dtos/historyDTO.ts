@@ -3,4 +3,5 @@ export type HistoryDTO = {
   hours: string
   food: string
   status: boolean
+  description: string
 }
