@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { SectionList } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useCallback, useState } from 'react'
+import { FlatList, SectionList, Text } from 'react-native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { Container, HeaderList, Label } from './styles'
 
@@ -8,34 +10,24 @@ import { UserAndLogo } from '@components/UserAndLogo'
 import { PorcentCard } from '@components/PorcentCard'
 import { DayCard } from '@components/DayCard'
 import { Button } from '@components/Button'
+import { Loading } from '@components/Loading'
 
 import { HistoryByDayDTO } from '@dtos/historyByDayDTO'
+import { getStorageDayli } from '@storage/dayliDietStorage'
+import { DAYLI_DIET_CONFIG } from '@storage/dayliDietConfig'
+import { CalcPorcentDiet } from '@utils/calcPorcentDiet'
+
+type DailyProps = {
+  id: string
+  hours: string
+  food: string
+  status: boolean
+  description: string
+}
 
 export function Home() {
-  const [history, setHistory] = useState<HistoryByDayDTO[]>([
-    {
-      title: '12.08.22',
-      data: [
-        {
-          id: '1',
-          food: 'Hamburguer',
-          hours: '10:43',
-          status: true,
-        },
-      ],
-    },
-    {
-      title: '16.11.22',
-      data: [
-        {
-          id: '2',
-          food: 'Batata-Frita',
-          hours: '15:43',
-          status: false,
-        },
-      ],
-    },
-  ])
+  const [isLoading, setIsLoading] = useState(true)
+  const [history, setHistory] = useState<DailyProps[]>([])
 
   const navigation = useNavigation()
 
@@ -51,10 +43,35 @@ export function Home() {
     navigation.navigate('details', { id })
   }
 
+  const porcent = CalcPorcentDiet(history)
+  const porcentParse = porcent === 'NaN' ? '0' : porcent
+
+  useFocusEffect(
+    useCallback(() => {
+      async function fetHistoryByDay() {
+        try {
+          setIsLoading(true)
+          const response = await getStorageDayli()
+          setHistory(response)
+        } catch (error) {
+        } finally {
+          setIsLoading(false)
+        }
+      }
+      fetHistoryByDay()
+
+      // AsyncStorage.removeItem(DAYLI_DIET_CONFIG)
+    }, []),
+  )
+
   return (
     <Container>
       <UserAndLogo />
-      <PorcentCard porcent="98,9" success={true} onPress={handleStatistics} />
+      <PorcentCard
+        porcent={porcentParse}
+        success={true}
+        onPress={handleStatistics}
+      />
 
       <Label>Refeições</Label>
 
@@ -65,17 +82,14 @@ export function Home() {
         onPress={handleNewFood}
       />
 
-      <SectionList
-        sections={history}
+      <FlatList
+        data={history}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <DayCard data={item} onPress={() => handleDetails(item.id)} />
         )}
-        renderSectionHeader={({ section }) => (
-          <HeaderList>{section.title}</HeaderList>
-        )}
-        contentContainerStyle={{ paddingBottom: 100, paddingTop: 32 }}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 100, paddingTop: 32 }}
       />
     </Container>
   )
