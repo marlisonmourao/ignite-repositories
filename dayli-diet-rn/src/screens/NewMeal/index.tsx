@@ -12,35 +12,27 @@ import {
   Label,
 } from './styles'
 
+import uuid from 'react-native-uuid'
+
 import { Header } from '@components/Header'
 import { RadioButton } from '@components/RadioButton'
 import { Button } from '@components/Button'
 import { InputForm } from '@components/InputForm'
 import { ScrollView } from 'react-native'
+import { setStorageDayli } from '@storage/dayliDietStorage'
 
 const newMealFormSchema = z.object({
-  name: z
-    .string()
-    .regex(/^\s*\S+\s*$/, 'Digite o nome da refeição')
-    .nonempty('Digite o nome da refeição'),
-  description: z
-    .string()
-    .regex(/^\s*\S+\s*$/, 'Digite a descrição')
-    .nonempty('Digite a descrição'),
-  date: z
-    .string()
-    .regex(/^\s*\S+\s*$/, 'Digite a data')
-    .nonempty('Digite a data'),
-  hours: z
-    .string()
-    .regex(/^\s*\S+\s*$/, 'Digite a hora')
-    .nonempty('Digite a hora'),
+  food: z.string().nonempty('Digite o nome da refeição'),
+  description: z.string().nonempty('Digite a descrição'),
+  date: z.string().nonempty('Digite a data'),
+  hours: z.string().nonempty('Digite a hora'),
 })
 
 type NewMealFormInput = z.infer<typeof newMealFormSchema>
 
 export function NewMeal() {
   const [mealOk, setMealOk] = useState<'success' | 'failed'>()
+  // const [date, setDate] = useState<number>(new Date().getTime())
 
   const {
     control,
@@ -56,9 +48,21 @@ export function NewMeal() {
     navigation.goBack()
   }
 
-  function handleSubmitForm(data: NewMealFormInput) {
-    navigation.navigate('feedback', { mealOk })
-    console.log(data)
+  async function handleSubmitForm(data: NewMealFormInput) {
+    try {
+      const status = mealOk === 'success'
+
+      const newData = {
+        id: uuid.v4().toString(),
+        status,
+        title: new Date().getTime(),
+        ...data,
+      }
+
+      await setStorageDayli(newData)
+
+      navigation.navigate('feedback', { mealOk })
+    } catch (error) {}
   }
 
   return (
@@ -71,8 +75,8 @@ export function NewMeal() {
             <Label>Nome</Label>
             <InputForm
               control={control}
-              name="name"
-              error={errors.name?.message}
+              name="food"
+              error={errors.food?.message}
             />
           </InputWrapper>
 
