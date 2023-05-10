@@ -13,17 +13,10 @@ import { Button } from '@components/Button'
 import { Loading } from '@components/Loading'
 
 import { HistoryByDayDTO } from '@dtos/historyByDayDTO'
-import { getStorageDayli } from '@storage/dayliDietStorage'
 import { DAYLI_DIET_CONFIG } from '@storage/dayliDietConfig'
 import { CalcPorcentDiet } from '@utils/calcPorcentDiet'
-
-type DailyProps = {
-  id: string
-  hours: string
-  food: string
-  status: boolean
-  description: string
-}
+import { getStorageDayli } from '@storage/dayliDietStorage'
+import { DailyProps } from 'src/@types/dayliProps'
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -44,7 +37,9 @@ export function Home() {
   }
 
   const porcent = CalcPorcentDiet(history)
-  const porcentParse = porcent === 'NaN' ? '0' : porcent
+  const porcetStatusColor = porcent >= 32
+
+  const porcentParse = String(porcent.toFixed(2))
 
   useFocusEffect(
     useCallback(() => {
@@ -58,9 +53,9 @@ export function Home() {
           setIsLoading(false)
         }
       }
-      fetHistoryByDay()
+      // fetHistoryByDay()
 
-      // AsyncStorage.removeItem(DAYLI_DIET_CONFIG)
+      AsyncStorage.removeItem(DAYLI_DIET_CONFIG)
     }, []),
   )
 
@@ -68,8 +63,8 @@ export function Home() {
     <Container>
       <UserAndLogo />
       <PorcentCard
-        porcent={porcentParse}
-        success={true}
+        porcent={porcentParse === 'NaN' ? '0' : porcentParse}
+        success={porcetStatusColor}
         onPress={handleStatistics}
       />
 
