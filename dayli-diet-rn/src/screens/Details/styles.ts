@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/native'
 
 type BollColorProps = {
-  color: 'success' | 'failed'
+  color: boolean
 }
 
 export const Container = styled.View`
@@ -79,7 +79,7 @@ export const Boll = styled.View<BollColorProps>`
   border-radius: 4px;
 
   background-color: ${({ color, theme }) =>
-    color === 'success' ? theme.colors.green_dark : theme.colors.red_dark};
+    color ? theme.colors.green_dark : theme.colors.red_dark};
 `
 
 export const ButtonWrapper = styled.View`
