@@ -1,15 +1,14 @@
 import { Controller } from 'react-hook-form'
-import { Container, Error } from './styles'
-import { TextInputProps } from 'react-native'
-import { Input } from '@components/Input'
+import { Container, Error, InputMaskForm } from './styles'
+import { TextInputMaskProps } from 'react-native-masked-text'
 
-type Props = TextInputProps & {
+type Props = TextInputMaskProps & {
   control?: any
   name: string
   error: any
 }
 
-export function InputForm({ control, name, error, ...rest }: Props) {
+export function InputFormFormated({ control, name, error, ...rest }: Props) {
   return (
     <Container>
       <Controller
@@ -17,7 +16,7 @@ export function InputForm({ control, name, error, ...rest }: Props) {
         defaultValue=""
         control={control}
         render={({ field: { onChange, value } }) => (
-          <Input onChangeText={onChange} value={value} {...rest} />
+          <InputMaskForm onChangeText={onChange} value={value} {...rest} />
         )}
       />
 

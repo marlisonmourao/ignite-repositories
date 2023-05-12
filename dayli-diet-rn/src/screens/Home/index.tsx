@@ -53,9 +53,9 @@ export function Home() {
           setIsLoading(false)
         }
       }
-      // fetHistoryByDay()
+      fetHistoryByDay()
 
-      AsyncStorage.removeItem(DAYLI_DIET_CONFIG)
+      // AsyncStorage.removeItem(DAYLI_DIET_CONFIG)
     }, []),
   )
 

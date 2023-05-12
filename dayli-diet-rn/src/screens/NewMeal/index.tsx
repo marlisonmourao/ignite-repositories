@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Alert, ScrollView } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -17,8 +18,8 @@ import uuid from 'react-native-uuid'
 import { Header } from '@components/Header'
 import { RadioButton } from '@components/RadioButton'
 import { Button } from '@components/Button'
-import { InputForm } from '@components/InputForm'
-import { ScrollView } from 'react-native'
+import { InputForm } from '@components/Form/InputForm'
+import { InputFormFormated } from '@components/Form/InputFormFormate'
 import { setStorageDayli } from '@storage/dayliDietStorage'
 
 const newMealFormSchema = z.object({
@@ -32,7 +33,6 @@ type NewMealFormInput = z.infer<typeof newMealFormSchema>
 
 export function NewMeal() {
   const [mealOk, setMealOk] = useState<'success' | 'failed'>()
-  // const [date, setDate] = useState<number>(new Date().getTime())
 
   const {
     control,
@@ -50,6 +50,13 @@ export function NewMeal() {
 
   async function handleSubmitForm(data: NewMealFormInput) {
     try {
+      if (!mealOk) {
+        return Alert.alert(
+          'Nova refeição',
+          'Selecione se está dentro da dieta ou não.',
+        )
+      }
+
       const status = mealOk === 'success'
 
       const newData = {
@@ -93,19 +100,27 @@ export function NewMeal() {
             <InputWrapper style={{ width: '48%' }}>
               <Label>Data</Label>
 
-              <InputForm
+              <InputFormFormated
                 control={control}
                 name="date"
                 error={errors.date?.message}
+                type="datetime"
+                options={{
+                  format: 'DD/MM/YYYY',
+                }}
               />
             </InputWrapper>
 
             <InputWrapper style={{ width: '48%' }}>
               <Label>Hora</Label>
-              <InputForm
+              <InputFormFormated
                 control={control}
                 error={errors.hours?.message}
                 name="hours"
+                type="datetime"
+                options={{
+                  format: 'HH:mm',
+                }}
               />
             </InputWrapper>
           </DateAndTimeContainer>
