@@ -29,3 +29,11 @@ export async function setStorageDayli(data: DataDayliDiet) {
 
   await AsyncStorage.setItem(DAYLI_DIET_CONFIG, newData)
 }
+
+export async function deleteStorageDayli(id: string) {
+  const storage = await getStorageDayli()
+
+  const filtered = storage.filter((dayli: DataDayliDiet) => dayli.id !== id)
+
+  await AsyncStorage.setItem(DAYLI_DIET_CONFIG, JSON.stringify(filtered))
+}

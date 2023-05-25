@@ -19,6 +19,7 @@ import { Button } from '@components/Button'
 import { Loading } from '@components/Loading'
 import { filterDietDayById } from '@storage/filterDietDayById'
 import { DailyProps } from 'src/@types/dayliProps'
+import { deleteStorageDayli } from '@storage/dayliDietStorage'
 
 type PropsParams = {
   id: string
@@ -34,6 +35,12 @@ export function Details() {
   const { id } = router.params as PropsParams
 
   function handleGoBack() {
+    navigation.goBack()
+  }
+
+  async function deleteDayli() {
+    await deleteStorageDayli(id)
+
     navigation.goBack()
   }
 
@@ -61,7 +68,11 @@ export function Details() {
 
   return (
     <Container>
-      <Header onBack={handleGoBack} title="Refeição" />
+      <Header
+        onBack={handleGoBack}
+        title="Refeição"
+        isSuccess={data[0].status === true}
+      />
 
       <Content>
         {data.map((item) => (
@@ -81,7 +92,11 @@ export function Details() {
 
         <ButtonWrapper>
           <Button title="Editar refeição" checked={false} />
-          <Button title="Excluir refeição" variant="secondary" />
+          <Button
+            title="Excluir refeição"
+            variant="secondary"
+            onPress={deleteDayli}
+          />
         </ButtonWrapper>
       </Content>
     </Container>

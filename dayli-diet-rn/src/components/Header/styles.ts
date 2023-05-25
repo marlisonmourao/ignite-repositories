@@ -1,9 +1,14 @@
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import styled, { css } from 'styled-components/native'
 
-export const Container = styled.View`
+type HeaderColor = {
+  isSuccess: boolean
+}
+
+export const Container = styled.View<HeaderColor>`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray_500};
+  background-color: ${({ theme, isSuccess }) =>
+    isSuccess ? theme.colors.green_light : theme.colors.red_light};
 
   height: 132px;
   padding: ${getStatusBarHeight() + 29}px 24px 24px;

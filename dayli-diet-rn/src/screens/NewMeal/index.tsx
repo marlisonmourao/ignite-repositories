@@ -92,6 +92,9 @@ export function NewMeal() {
             <InputForm
               control={control}
               name="description"
+              textAlignVertical="top"
+              multiline
+              style={{ height: 100 }}
               error={errors.description?.message}
             />
           </InputWrapper>

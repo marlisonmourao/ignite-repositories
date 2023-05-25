@@ -35,7 +35,7 @@ export const ButtonWrapper = styled.View`
   width: 100%;
   gap: 5px;
   margin-top: 8px;
-  margin-bottom: 148px;
+  margin-bottom: 100px;
 
   flex-direction: row;
   align-items: center;
