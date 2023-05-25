@@ -10,6 +10,7 @@ export declare global {
       statistics: undefined
       feedback: FeedbackNavigationProps
       details: DetailsNavigatorProps
+      edit: DetailsNavigatorProps
     }
   }
 }

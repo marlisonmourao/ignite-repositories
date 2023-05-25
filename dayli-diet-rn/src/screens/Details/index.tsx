@@ -38,6 +38,10 @@ export function Details() {
     navigation.goBack()
   }
 
+  function handleEditMeal() {
+    navigation.navigate('edit', { id })
+  }
+
   async function deleteDayli() {
     await deleteStorageDayli(id)
 
@@ -91,7 +95,11 @@ export function Details() {
         ))}
 
         <ButtonWrapper>
-          <Button title="Editar refeição" checked={false} />
+          <Button
+            title="Editar refeição"
+            checked={false}
+            onPress={handleEditMeal}
+          />
           <Button
             title="Excluir refeição"
             variant="secondary"

@@ -14,7 +14,6 @@ export function InputForm({ control, name, error, ...rest }: Props) {
     <Container>
       <Controller
         name={name}
-        defaultValue=""
         control={control}
         render={({ field: { onChange, value } }) => (
           <Input onChangeText={onChange} value={value} {...rest} />
