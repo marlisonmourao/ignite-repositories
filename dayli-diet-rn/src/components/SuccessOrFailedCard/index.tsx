@@ -2,7 +2,7 @@ import { Container, Label, Number, SuccessOrFailedColor } from './styles'
 
 type Props = {
   variant?: SuccessOrFailedColor
-  numberOfMeals: string
+  numberOfMeals: number
   mealsLabel: string
 }
 

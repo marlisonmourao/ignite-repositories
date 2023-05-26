@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import {
   Boll,
@@ -40,6 +40,20 @@ export function Details() {
 
   function handleEditMeal() {
     navigation.navigate('edit', { id })
+  }
+
+  function handleDeleteDayli() {
+    Alert.alert('Deletar refeição', 'Deseja realmente deletar essa refeição?', [
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+
+      {
+        text: 'Sim',
+        onPress: () => deleteDayli(),
+      },
+    ])
   }
 
   async function deleteDayli() {
@@ -103,7 +117,7 @@ export function Details() {
           <Button
             title="Excluir refeição"
             variant="secondary"
-            onPress={deleteDayli}
+            onPress={handleDeleteDayli}
           />
         </ButtonWrapper>
       </Content>

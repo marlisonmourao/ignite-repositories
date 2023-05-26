@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
@@ -13,12 +14,69 @@ import {
 
 import { PorcentCard } from '@components/PorcentCard'
 import { SuccessOrFailedCard } from '@components/SuccessOrFailedCard'
+import { Loading } from '@components/Loading'
+
+import { DailyProps } from 'src/@types/dayliProps'
+import { CalcPorcentDiet } from '@utils/calcPorcentDiet'
+
+import { filterDietSuccessOrNo } from '@storage/filterDietDayById'
+import { getStorageDayli } from '@storage/dayliDietStorage'
+
+type SuccessOrFailedNumber = {
+  success: number
+  failed: number
+}
 
 export function Statistics() {
+  const [statistic, setStatistic] = useState<DailyProps[]>([])
+  const [succssOrFailed, setSuccssOrFailed] = useState(
+    {} as SuccessOrFailedNumber,
+  )
+  const [isLoading, setIsLoading] = useState(true)
+
   const navigation = useNavigation()
+
+  const porcent = CalcPorcentDiet(statistic)
+  const porcentParse = String(porcent.toFixed(2))
 
   function handleGoback() {
     navigation.goBack()
+  }
+
+  async function fetchAllMealDayli() {
+    try {
+      setIsLoading(true)
+      const responseData = await getStorageDayli()
+      setStatistic(responseData)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  async function fetchSuccessOrFailed() {
+    try {
+      setIsLoading(true)
+      const responseData = filterDietSuccessOrNo(statistic)
+      setSuccssOrFailed(responseData!)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchAllMealDayli()
+  }, [])
+
+  useEffect(() => {
+    fetchSuccessOrFailed()
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
   }
 
   return (
@@ -29,7 +87,7 @@ export function Statistics() {
         <Container>
           <PorcentCard
             onPress={handleGoback}
-            porcent="43"
+            porcent={porcentParse}
             success
             variant="secondary"
           />
@@ -42,17 +100,17 @@ export function Statistics() {
             </Sequence>
 
             <Sequence>
-              <NumberSequence>109</NumberSequence>
+              <NumberSequence>{statistic.length}</NumberSequence>
               <Label>refeições registradas</Label>
             </Sequence>
 
             <Content>
               <SuccessOrFailedCard
-                numberOfMeals="32"
+                numberOfMeals={succssOrFailed.success}
                 mealsLabel="refeições dentro da dieta"
               />
               <SuccessOrFailedCard
-                numberOfMeals="77"
+                numberOfMeals={succssOrFailed.failed}
                 mealsLabel="refeições fora da dieta"
                 variant="failed"
               />

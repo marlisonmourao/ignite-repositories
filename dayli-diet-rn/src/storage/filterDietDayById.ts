@@ -12,3 +12,22 @@ export async function filterDietDayById(id: string) {
     console.log(error)
   }
 }
+
+export function filterDietSuccessOrNo(storage: DailyProps[]) {
+  try {
+    let success = 0
+    let failed = 0
+
+    for (let i = 0; i < storage.length; i++) {
+      if (storage[i].status) {
+        success++
+      } else {
+        failed++
+      }
+    }
+
+    return { success, failed }
+  } catch (error) {
+    console.log(error)
+  }
+}
