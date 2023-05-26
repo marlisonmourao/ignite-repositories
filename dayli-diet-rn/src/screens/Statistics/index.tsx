@@ -72,8 +72,10 @@ export function Statistics() {
   }, [])
 
   useEffect(() => {
-    fetchSuccessOrFailed()
-  }, [])
+    if (statistic.length > 0) {
+      fetchSuccessOrFailed()
+    }
+  }, [statistic])
 
   if (isLoading) {
     return <Loading />
