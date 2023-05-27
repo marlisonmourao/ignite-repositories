@@ -11,4 +11,9 @@ export const globalStyles = globalCss({
     backgroundColor: '$background',
     '-webkit-font-smoothing': 'antialiased',
   },
+
+  a: {
+    textDecoration: 'none',
+    cursor: 'pointer',
+  },
 })

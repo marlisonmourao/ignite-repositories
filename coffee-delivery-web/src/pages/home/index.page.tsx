@@ -1,7 +1,10 @@
-import { ContainerHome, Hero, InfoWrapper } from './styles'
+import { ContainerHome, Hero, InfoWrapper, ItemsWrapper } from './styles'
+import Image from 'next/image'
 
 import CoffeImg from '../../assets/CoffeImg.png'
-import Image from 'next/image'
+
+import { ItemIcon } from '@/components/ItemIcon'
+import { iconsHero } from '@/utils/iconsHero'
 
 export default function Home() {
   return (
@@ -13,6 +16,17 @@ export default function Home() {
             Com o Coffee Delivery você recebe seu café onde estiver, a <br />
             qualquer hora
           </p>
+
+          <ItemsWrapper>
+            {iconsHero.map((icon) => (
+              <ItemIcon
+                key={icon.id}
+                name={icon.icon}
+                variant={icon.variant}
+                title={icon.title}
+              />
+            ))}
+          </ItemsWrapper>
         </InfoWrapper>
 
         <Image src={CoffeImg} alt="" width={476} height={360} />

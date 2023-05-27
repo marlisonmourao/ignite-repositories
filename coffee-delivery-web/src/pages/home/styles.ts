@@ -9,7 +9,7 @@ export const ContainerHome = styled('div', {
 })
 
 export const Hero = styled('main', {
-  maxHeight: 1200,
+  maxWidth: 1200,
 
   display: 'flex',
   alignItems: 'flex-start',
@@ -37,4 +37,7 @@ export const InfoWrapper = styled('div', {
 export const ItemsWrapper = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
+  gap: '1.875rem',
+
+  marginTop: '4.125rem',
 })

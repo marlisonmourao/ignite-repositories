@@ -1,12 +1,11 @@
 import { styled } from '@/styles'
+import Link from 'next/link'
 
 export const ContainerHeader = styled('header', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '2rem 11rem',
-  minWidth: '1440px',
-  margin: '0 auto',
 })
 
 export const Actions = styled('div', {
@@ -21,7 +20,7 @@ export const Location = styled('div', {
   gap: '0.5rem',
 })
 
-export const LocationIcon = styled('div', {
+export const LocationIcon = styled(Link, {
   display: 'flex',
   alignItems: 'center',
   backgroundColor: '$purpleLight',
@@ -32,9 +31,13 @@ export const LocationIcon = styled('div', {
   borderRadius: 6,
 
   fontFamily: 'var(--roboto)',
+
+  '&:hover': {
+    backgroundColor: '#EBE5F9',
+  },
 })
 
-export const IconWrapper = styled('div', {
+export const IconWrapper = styled(Link, {
   padding: '0.5rem',
   backgroundColor: '$yellowLight',
   borderRadius: 6,
