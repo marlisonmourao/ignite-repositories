@@ -41,3 +41,15 @@ export const ItemsWrapper = styled('div', {
 
   marginTop: '4.125rem',
 })
+
+export const Products = styled('div', {
+  maxWidth: 1200,
+  margin: '0 auto',
+  marginTop: '3.5rem',
+})
+
+export const Label = styled('h2', {
+  fontFamily: 'var(--baloo2)',
+  fontWeight: '800',
+  fontSize: '$xxxl',
+})

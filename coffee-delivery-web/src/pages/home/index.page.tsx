@@ -1,4 +1,11 @@
-import { ContainerHome, Hero, InfoWrapper, ItemsWrapper } from './styles'
+import {
+  ContainerHome,
+  Hero,
+  InfoWrapper,
+  ItemsWrapper,
+  Label,
+  Products,
+} from './styles'
 import Image from 'next/image'
 
 import CoffeImg from '../../assets/CoffeImg.png'
@@ -31,6 +38,10 @@ export default function Home() {
 
         <Image src={CoffeImg} alt="" width={476} height={360} />
       </Hero>
+
+      <Products>
+        <Label>Nossos cafés</Label>
+      </Products>
     </ContainerHome>
   )
 }
