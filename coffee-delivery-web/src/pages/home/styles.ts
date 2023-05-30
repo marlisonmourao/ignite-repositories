@@ -48,8 +48,16 @@ export const Products = styled('div', {
   marginTop: '3.5rem',
 })
 
+export const ProductsItems = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr  1fr 1fr 1fr',
+  gap: '2rem',
+})
+
 export const Label = styled('h2', {
   fontFamily: 'var(--baloo2)',
   fontWeight: '800',
   fontSize: '$xxxl',
+
+  marginBottom: '3.375rem',
 })

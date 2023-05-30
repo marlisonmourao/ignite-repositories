@@ -5,6 +5,7 @@ import {
   ItemsWrapper,
   Label,
   Products,
+  ProductsItems,
 } from './styles'
 import Image from 'next/image'
 
@@ -12,6 +13,8 @@ import CoffeImg from '../../assets/CoffeImg.png'
 
 import { ItemIcon } from '@/components/ItemIcon'
 import { iconsHero } from '@/utils/iconsHero'
+import { CoffeeCard } from '@/components/CoffeeCard'
+import { dataCoffee } from '@/utils/dataCoffee'
 
 export default function Home() {
   return (
@@ -41,6 +44,12 @@ export default function Home() {
 
       <Products>
         <Label>Nossos cafés</Label>
+
+        <ProductsItems>
+          {dataCoffee.map((item) => (
+            <CoffeeCard key={item.id} data={item} />
+          ))}
+        </ProductsItems>
       </Products>
     </ContainerHome>
   )
