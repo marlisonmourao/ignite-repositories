@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Actions,
   ActionsButtons,
@@ -10,21 +11,40 @@ import {
   Title,
 } from './styles'
 
-import { Minus, Plus, ShoppingCart } from 'lucide-react'
+import { useCartContext } from '@/context/useCartContex'
 
-export interface CoffeeDataProps {
-  id: number
-  image: string
-  tag: string
-  title: string
-  description: string
-}
+import { Minus, Plus, ShoppingCart } from 'lucide-react'
+import { CoffeeDataProps } from '@/dtos/cardCoffeProps'
 
 interface Props {
   data: CoffeeDataProps
 }
 
 export function CoffeeCard({ data }: Props) {
+  const [numberProduct, setNumberProduct] = useState(1)
+
+  const { setDataCoffeeCard } = useCartContext()
+
+  function handleAdd() {
+    setNumberProduct((prev) => prev + 1)
+  }
+
+  function handleMinus() {
+    if (numberProduct <= 1) {
+      return
+    }
+
+    setNumberProduct((prev) => prev - 1)
+  }
+
+  function handleAddCart() {
+    const dataCoffe = {
+      ...data,
+      numberProduct,
+    }
+    setDataCoffeeCard((prev) => [...prev, dataCoffe])
+  }
+
   return (
     <CoffeeContainer>
       <img src={`/products/${data.image}`} alt="" width={120} height={120} />
@@ -42,18 +62,18 @@ export function CoffeeCard({ data }: Props) {
 
         <Actions>
           <ActionsButtons>
-            <button>
+            <button onClick={() => handleMinus()}>
               <Minus size={14} />
             </button>
 
-            <span>1</span>
+            <span style={{ marginTop: -5 }}>{numberProduct}</span>
 
-            <button>
+            <button onClick={() => handleAdd()}>
               <Plus size={14} />
             </button>
           </ActionsButtons>
 
-          <ButtonIconShopping>
+          <ButtonIconShopping onClick={() => handleAddCart()}>
             <ShoppingCart size={22} color="#FFFFFF" fill="#FFFFFF" />
           </ButtonIconShopping>
         </Actions>

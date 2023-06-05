@@ -12,8 +12,8 @@ import Image from 'next/image'
 import CoffeImg from '../../assets/CoffeImg.png'
 
 import { ItemIcon } from '@/components/ItemIcon'
-import { iconsHero } from '@/utils/iconsHero'
 import { CoffeeCard } from '@/components/CoffeeCard'
+import { iconsHero } from '@/utils/iconsHero'
 import { dataCoffee } from '@/utils/dataCoffee'
 
 export default function Home() {

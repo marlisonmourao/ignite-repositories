@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 
 import { Roboto, Baloo_2 } from 'next/font/google'
 import Head from 'next/head'
+import { CartContextProvider } from '@/context/CartContext'
 
 export const roboto = Roboto({
   subsets: ['latin'],
@@ -33,7 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
       `}</style>
       <>
         <Header />
-        <Component {...pageProps} />
+        <CartContextProvider>
+          <Component {...pageProps} />
+        </CartContextProvider>
       </>
     </>
   )

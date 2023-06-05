@@ -46,6 +46,7 @@ export const Products = styled('div', {
   maxWidth: 1200,
   margin: '0 auto',
   marginTop: '3.5rem',
+  paddingBottom: '5rem',
 })
 
 export const ProductsItems = styled('div', {
