@@ -1,5 +1,6 @@
 import {
   ContainerHome,
+  ContainerImage,
   Hero,
   InfoWrapper,
   ItemsWrapper,
@@ -39,7 +40,9 @@ export default function Home() {
           </ItemsWrapper>
         </InfoWrapper>
 
-        <Image src={CoffeImg} alt="" width={476} height={360} />
+        <ContainerImage>
+          <Image src={CoffeImg} alt="" width={476} height={360} />
+        </ContainerImage>
       </Hero>
 
       <Products>
