@@ -42,11 +42,36 @@ export const IconWrapper = styled(Link, {
   backgroundColor: '$yellowLight',
   borderRadius: 6,
 
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
   svg: {
     color: '$yellowDark',
+  },
+})
+
+export const Notification = styled('div', {
+  width: '1.25rem',
+  height: '1.25rem',
+  borderRadius: '50%',
+  position: 'absolute',
+  backgroundColor: '$yellowDark',
+
+  display: 'flex',
+  alignContent: 'center',
+  justifyContent: 'center',
+
+  fontFamily: 'var(--roboto)',
+  fontWeight: 'bold',
+  fontSize: '$sm',
+  color: '$white',
+
+  top: '-8px',
+  right: '-8.35px',
+
+  span: {
+    marginTop: '2px',
   },
 })

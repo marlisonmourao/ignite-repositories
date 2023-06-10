@@ -1,48 +1,38 @@
 import { useState } from 'react'
-import {
-  Actions,
-  ActionsButtons,
-  ButtonIconShopping,
-  Buy,
-  CoffeeContainer,
-  CoffeeTag,
-  Description,
-  Price,
-  Title,
-} from './styles'
+import { CoffeeContainer, CoffeeTag, Description, Title } from './styles'
 
 import { useCartContext } from '@/context/useCartContex'
 
-import { Minus, Plus, ShoppingCart } from 'lucide-react'
 import { CoffeeDataProps } from '@/dtos/cardCoffeProps'
+import { PriceActions } from '../PriceActions'
 
 interface Props {
   data: CoffeeDataProps
 }
 
 export function CoffeeCard({ data }: Props) {
-  const [numberProduct, setNumberProduct] = useState(1)
+  const { addCart } = useCartContext()
+  const [quantity, setQuantity] = useState(1)
 
-  const { setDataCoffeeCard } = useCartContext()
+  function handleAddToCart() {
+    const productCoffee = {
+      ...data,
+      quantity: 1,
+    }
 
-  function handleAdd() {
-    setNumberProduct((prev) => prev + 1)
+    addCart(productCoffee)
   }
 
-  function handleMinus() {
-    if (numberProduct <= 1) {
+  function handleIncrease() {
+    setQuantity((prev) => prev + 1)
+  }
+
+  function handleDecrease() {
+    if (quantity === 1) {
       return
     }
 
-    setNumberProduct((prev) => prev - 1)
-  }
-
-  function handleAddCart() {
-    const dataCoffe = {
-      ...data,
-      numberProduct,
-    }
-    setDataCoffeeCard((prev) => [...prev, dataCoffe])
+    setQuantity((prev) => prev - 1)
   }
 
   return (
@@ -55,29 +45,12 @@ export function CoffeeCard({ data }: Props) {
 
       <Description>{data.description}</Description>
 
-      <Buy>
-        <Price>
-          <span>R$</span> 9,90
-        </Price>
-
-        <Actions>
-          <ActionsButtons>
-            <button onClick={() => handleMinus()}>
-              <Minus size={14} />
-            </button>
-
-            <span style={{ marginTop: -5 }}>{numberProduct}</span>
-
-            <button onClick={() => handleAdd()}>
-              <Plus size={14} />
-            </button>
-          </ActionsButtons>
-
-          <ButtonIconShopping onClick={() => handleAddCart()}>
-            <ShoppingCart size={22} color="#FFFFFF" fill="#FFFFFF" />
-          </ButtonIconShopping>
-        </Actions>
-      </Buy>
+      <PriceActions
+        onAddToCard={handleAddToCart}
+        onDecrease={handleDecrease}
+        quantity={quantity}
+        onIncrease={handleIncrease}
+      />
     </CoffeeContainer>
   )
 }

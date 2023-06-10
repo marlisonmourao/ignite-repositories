@@ -1,9 +1,13 @@
-import React, { createContext, ReactNode, useState } from 'react'
+import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import { CoffeeDataProps } from '@/dtos/cardCoffeProps'
+import { produce } from 'immer'
 
+interface CartItem extends CoffeeDataProps {
+  quantity: number
+}
 interface CartContextProps {
-  dataCoffeeCard: CoffeeDataProps[]
-  setDataCoffeeCard: React.Dispatch<React.SetStateAction<CoffeeDataProps[]>>
+  numberNotification: number
+  addCart: (coffeeData: CartItem) => void
 }
 
 export const CartContext = createContext({} as CartContextProps)
@@ -13,14 +17,51 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [dataCoffeeCard, setDataCoffeeCard] = useState<CoffeeDataProps[]>([])
+  const [dataCoffeeCard, setDataCoffeeCard] = useState<CartItem[]>([])
 
-  if (dataCoffeeCard.length > 0) {
-    localStorage.setItem('coffeeCard', JSON.stringify(dataCoffeeCard))
+  async function loadDataCoffee() {
+    try {
+      const data = await localStorage.getItem('coffeeCard')
+
+      if (data) {
+        const parse = JSON.parse(data)
+
+        await setDataCoffeeCard(parse)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
+  function addCart(coffeeData: CartItem) {
+    const coffeeAlreadyExists = dataCoffeeCard.findIndex(
+      (item) => item.id === coffeeData.id,
+    )
+
+    const newCart = produce(dataCoffeeCard, (draft) => {
+      if (coffeeAlreadyExists < 0) {
+        draft.push(coffeeData)
+      } else {
+        draft[coffeeAlreadyExists].quantity += coffeeData.quantity
+      }
+
+      setDataCoffeeCard(newCart)
+    })
+  }
+
+  const numberNotification = dataCoffeeCard.length
+
+  useEffect(() => {
+    loadDataCoffee()
+  }, [])
+
   return (
-    <CartContext.Provider value={{ dataCoffeeCard, setDataCoffeeCard }}>
+    <CartContext.Provider
+      value={{
+        numberNotification,
+        addCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )
