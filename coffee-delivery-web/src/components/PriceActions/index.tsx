@@ -13,6 +13,7 @@ interface PriceActionsProps {
   onDecrease: () => void
   onAddToCard: () => void
   quantity: number
+  price: string
 }
 
 export function PriceActions({
@@ -20,16 +21,17 @@ export function PriceActions({
   onIncrease,
   quantity,
   onAddToCard,
+  price,
 }: PriceActionsProps) {
   return (
     <Buy>
       <Price>
-        <span>R$</span> 9,90
+        <span>R$</span> {price}
       </Price>
 
       <Actions>
         <ActionsButtons>
-          <button onClick={onDecrease}>
+          <button disabled={quantity <= 1} onClick={onDecrease}>
             <Minus size={14} />
           </button>
 

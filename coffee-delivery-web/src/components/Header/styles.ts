@@ -68,10 +68,10 @@ export const Notification = styled('div', {
   fontSize: '$sm',
   color: '$white',
 
-  top: '-8px',
-  right: '-8.35px',
+  top: 'calc(-1.25rem / 2)',
+  right: 'calc(-1.25rem / 2)',
 
   span: {
-    marginTop: '2px',
+    marginTop: '2.50px',
   },
 })

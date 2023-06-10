@@ -15,7 +15,6 @@ import { useCartContext } from '@/context/useCartContex'
 
 export default function Header() {
   const { numberNotification } = useCartContext()
-
   return (
     <ContainerHeader>
       <Link href="/">
@@ -30,16 +29,12 @@ export default function Header() {
 
         <IconWrapper href="">
           <ShoppingCart size={22} fill="#C47F17" />
-          {/* 
+
           {numberNotification > 0 && (
             <Notification>
-              <span>{numberNotification} 3</span>
+              <span>{numberNotification}</span>
             </Notification>
-          )} */}
-
-          <Notification>
-            <span>{numberNotification}</span>
-          </Notification>
+          )}
         </IconWrapper>
       </Location>
     </ContainerHeader>

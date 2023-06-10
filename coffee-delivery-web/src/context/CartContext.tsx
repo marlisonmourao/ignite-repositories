@@ -18,20 +18,7 @@ interface CartContextProviderProps {
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [dataCoffeeCard, setDataCoffeeCard] = useState<CartItem[]>([])
-
-  async function loadDataCoffee() {
-    try {
-      const data = await localStorage.getItem('coffeeCard')
-
-      if (data) {
-        const parse = JSON.parse(data)
-
-        await setDataCoffeeCard(parse)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const numberNotification = dataCoffeeCard.length
 
   function addCart(coffeeData: CartItem) {
     const coffeeAlreadyExists = dataCoffeeCard.findIndex(
@@ -44,12 +31,30 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       } else {
         draft[coffeeAlreadyExists].quantity += coffeeData.quantity
       }
-
-      setDataCoffeeCard(newCart)
     })
+    setDataCoffeeCard(newCart)
+
+    if (dataCoffeeCard) {
+      localStorage.setItem(
+        'coffeeDelivery:dataCoffeeCard',
+        JSON.stringify(newCart),
+      )
+    }
   }
 
-  const numberNotification = dataCoffeeCard.length
+  async function loadDataCoffee() {
+    try {
+      const data = await localStorage.getItem('coffeeDelivery:dataCoffeeCard')
+
+      if (data) {
+        const parse = JSON.parse(data)
+
+        await setDataCoffeeCard(parse)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     loadDataCoffee()

@@ -1,6 +1,7 @@
 export const dataCoffee = [
   {
     id: '1',
+    price: '9,90',
     image: '/Image.png',
     tag: 'Tradicional',
     title: 'Expresso Tradicional',
@@ -8,6 +9,7 @@ export const dataCoffee = [
   },
   {
     id: '2',
+    price: '9,90',
     image: '/Image-1.png',
     tag: 'Tradicional',
     title: 'Expresso Americano',
@@ -15,6 +17,7 @@ export const dataCoffee = [
   },
   {
     id: '3',
+    price: '9,90',
     image: '/Image-2.png',
     tag: 'Tradicional',
     title: 'Expresso Cremoso',
@@ -22,6 +25,7 @@ export const dataCoffee = [
   },
   {
     id: '4',
+    price: '9,90',
     image: '/Image-3.png',
     tag: 'Tradicional',
     title: 'Expresso Gelado',
@@ -29,6 +33,7 @@ export const dataCoffee = [
   },
   {
     id: '5',
+    price: '9,90',
     image: '/Image-4.png',
     tag: 'com leite',
     title: 'Café com Leite',
@@ -36,6 +41,7 @@ export const dataCoffee = [
   },
   {
     id: '6',
+    price: '9,90',
     image: '/Image-5.png',
     tag: 'com leite',
     title: 'Latte',
@@ -44,6 +50,7 @@ export const dataCoffee = [
   },
   {
     id: '7',
+    price: '9,90',
     image: '/Image-6.png',
     tag: 'com leite',
     title: 'Capuccino',
@@ -52,6 +59,7 @@ export const dataCoffee = [
   },
   {
     id: '8',
+    price: '9,90',
     image: '/Image-7.png',
     tag: 'com leite',
     title: 'Macchiato',
@@ -60,6 +68,7 @@ export const dataCoffee = [
   },
   {
     id: '9',
+    price: '9,90',
     image: '/Image-8.png',
     tag: 'com leite',
     title: 'Macchiato',
@@ -69,6 +78,7 @@ export const dataCoffee = [
 
   {
     id: '10',
+    price: '9,90',
     image: '/Image-9.png',
     tag: 'com leite',
     title: 'Macchiato',
@@ -76,6 +86,7 @@ export const dataCoffee = [
   },
   {
     id: '11',
+    price: '9,90',
     image: '/Image-10.png',
     tag: 'com leite',
     title: 'Chocolate Quente',
@@ -83,6 +94,7 @@ export const dataCoffee = [
   },
   {
     id: '12',
+    price: '9,90',
     image: '/Image-11.png',
     tag: 'com leite',
     title: 'Cubano',

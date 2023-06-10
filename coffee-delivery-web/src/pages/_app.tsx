@@ -33,8 +33,8 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <>
-        <Header />
         <CartContextProvider>
+          <Header />
           <Component {...pageProps} />
         </CartContextProvider>
       </>

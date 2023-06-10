@@ -17,7 +17,7 @@ export function CoffeeCard({ data }: Props) {
   function handleAddToCart() {
     const productCoffee = {
       ...data,
-      quantity: 1,
+      quantity,
     }
 
     addCart(productCoffee)
@@ -28,10 +28,6 @@ export function CoffeeCard({ data }: Props) {
   }
 
   function handleDecrease() {
-    if (quantity === 1) {
-      return
-    }
-
     setQuantity((prev) => prev - 1)
   }
 
@@ -50,6 +46,7 @@ export function CoffeeCard({ data }: Props) {
         onDecrease={handleDecrease}
         quantity={quantity}
         onIncrease={handleIncrease}
+        price={data.price}
       />
     </CoffeeContainer>
   )
