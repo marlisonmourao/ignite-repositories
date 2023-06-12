@@ -3,6 +3,7 @@ import {
   AddressText,
   AddressTextContainer,
   AddressTextDescription,
+  ButtonConfirm,
   CheckoutContainer,
   CheckoutContent,
   ContainerCheckout,
@@ -10,6 +11,8 @@ import {
   FormContent,
   InputWrapper,
   InputWrapperRow,
+  PriceWrapper,
+  Text,
   Title,
 } from './styles'
 
@@ -57,6 +60,22 @@ export default function Checkout() {
           <ContainerCheckout>
             <CoffeeCardCheckout />
             <CoffeeCardCheckout />
+
+            <PriceWrapper>
+              <Text>Total de itens</Text>
+              <Text>R$ 29,70</Text>
+            </PriceWrapper>
+
+            <PriceWrapper>
+              <Text>Entrega</Text>
+              <Text>R$ 3,50</Text>
+            </PriceWrapper>
+
+            <PriceWrapper>
+              <Text variant="alt">Total</Text>
+              <Text variant="alt">R$ 33,20</Text>
+            </PriceWrapper>
+            <ButtonConfirm>Confirmar Pedido</ButtonConfirm>
           </ContainerCheckout>
         </div>
       </CheckoutContent>

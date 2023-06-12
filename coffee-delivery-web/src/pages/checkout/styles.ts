@@ -81,3 +81,54 @@ export const ContainerCheckout = styled('div', {
   borderRadius: '6px 44px',
   padding: '2.5rem',
 })
+
+export const PriceWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  marginBottom: '0.75rem',
+})
+
+export const Text = styled('span', {
+  fontFamily: 'var(--roboto)',
+  lineHeight: '$base',
+  fontSize: '$md',
+
+  variants: {
+    variant: {
+      alt: {
+        fontWeight: 'bold',
+        fontSize: '$xl',
+        color: '$baseSubtitle',
+      },
+    },
+  },
+})
+
+export const ButtonConfirm = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  width: '100%',
+  padding: '0.75rem 0.5rem',
+  border: 0,
+
+  backgroundColor: '$yellow',
+  borderRadius: '6px',
+
+  textTransform: 'uppercase',
+  color: '$white',
+  fontSize: '$md',
+  fontWeight: 'bold',
+  marginTop: '24px',
+
+  cursor: 'pointer',
+  transition: 'background-color 0.2s ease-in-out',
+
+  '&:hover': {
+    backgroundColor: '$yellowDark',
+  },
+})

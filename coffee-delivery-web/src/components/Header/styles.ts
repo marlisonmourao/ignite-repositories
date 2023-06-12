@@ -37,7 +37,7 @@ export const LocationIcon = styled(Link, {
   },
 })
 
-export const IconWrapper = styled(Link, {
+export const IconWrapper = styled('div', {
   padding: '0.5rem',
   backgroundColor: '$yellowLight',
   borderRadius: 6,

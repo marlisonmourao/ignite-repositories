@@ -3,12 +3,17 @@ import { styled } from '@/styles'
 export const ContainerHome = styled('div', {
   height: '100vh',
   backgroundColor: '$background',
-  margin: '7.875rem auto',
-  padding: '0 10rem',
+  margin: '5rem auto',
 
   '@media screen and (max-width: 768px)': {
     padding: '0 2rem',
   },
+})
+
+export const ContainerHeroBackground = styled('div', {
+  width: '100%',
+  backgroundImage:
+    'linear-gradient(to bottom, rgba(235, 193, 54, 0.15), rgba(128, 71, 248, 0.15))',
 })
 
 export const Hero = styled('main', {
@@ -17,8 +22,6 @@ export const Hero = styled('main', {
   alignItems: 'flex-start',
   justifyContent: 'space-between',
   margin: '0 auto',
-  backgroundImage:
-    'linear-gradient(to bottom, rgba(235, 193, 54, 0.15), rgba(128, 71, 248, 0.15))',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 
@@ -71,7 +74,7 @@ export const ItemsWrapper = styled('div', {
 export const Products = styled('div', {
   maxWidth: 1200,
   margin: '0 auto',
-  marginTop: '3.5rem',
+  marginTop: '3.8rem',
   paddingBottom: '5rem',
 
   '@media screen and (max-width: 768px)': {
