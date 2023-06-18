@@ -102,7 +102,7 @@ export const Price = styled('p', {
   color: '$baseText',
 
   position: 'absolute',
-  top: '12px',
+  top: '4px',
   right: '4px',
 })
 

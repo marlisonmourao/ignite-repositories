@@ -20,14 +20,14 @@ export const Form = styled('form', {
   marginTop: '15px',
   padding: '2.5rem',
   backgroundColor: '$baseCard',
+})
 
-  div: {
-    display: 'flex',
-    gap: '8px',
+export const AddressData = styled('div', {
+  display: 'flex',
+  gap: '8px',
 
-    svg: {
-      color: '$yellowDark',
-    },
+  svg: {
+    color: '$yellowDark',
   },
 })
 
@@ -64,7 +64,7 @@ export const InputWrapper = styled('div', {
   marginTop: '2rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: '0.7rem',
 })
 
 export const InputWrapperRow = styled('div', {
@@ -131,4 +131,34 @@ export const ButtonConfirm = styled('button', {
   '&:hover': {
     backgroundColor: '$yellowDark',
   },
+})
+
+export const PaymentData = styled('div', {
+  width: '100%',
+  backgroundColor: '$baseCard',
+  padding: '2.5rem',
+
+  marginTop: '0.75rem',
+
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+
+  svg: {
+    color: '$purple',
+  },
+})
+
+export const WrapperCreditCard = styled('div', {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginTop: '2rem',
+})
+
+export const ErrorMessage = styled('span', {
+  fontSize: '$sm',
+  fontFamily: 'var(--roboto)',
+  color: 'red',
 })
