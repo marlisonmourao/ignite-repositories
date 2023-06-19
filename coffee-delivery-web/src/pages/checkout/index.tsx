@@ -1,8 +1,9 @@
-import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { DollarSign, MapPin } from 'lucide-react'
+import { CreditCard, DollarSign, Landmark, MapPin } from 'lucide-react'
 
 import {
   AddressData,
@@ -27,6 +28,8 @@ import {
 
 import { Input } from '@/components/Input/styles'
 import { CoffeeCardCheckout } from '@/components/CoffeeCardCheckout'
+import { PaymentCard } from '@/components/PaymentCard'
+import { useCartContext } from '@/context/useCartContex'
 
 const formSchema = z.object({
   cep: z.string().min(8, 'Informe um CEP válido'),
@@ -41,6 +44,10 @@ const formSchema = z.object({
 type typeFormSchema = z.infer<typeof formSchema>
 
 export default function Checkout() {
+  const [paymentMethods, setPaymentMethods] = useState('')
+
+  const { dataCoffeeCard, setDataCoffeeCard } = useCartContext()
+
   const {
     register,
     handleSubmit,
@@ -50,8 +57,39 @@ export default function Checkout() {
   })
 
   function handleSubmitForm(data: typeFormSchema) {
-    console.log(data)
+    const newData = {
+      ...data,
+      paymentMethods,
+    }
+
+    console.log(newData)
   }
+
+  function handleAddCardPaymentMethods(title: string) {
+    setPaymentMethods(title)
+  }
+
+  async function handleOnRemove(id: string) {
+    const data = await localStorage.getItem('coffeeDelivery:dataCoffeeCard')
+
+    const parseData = JSON.parse(data!)
+
+    const filtered = parseData.filter((item: any) => item.id !== id)
+
+    localStorage.setItem(
+      'coffeeDelivery:dataCoffeeCard',
+      JSON.stringify(filtered),
+    )
+
+    setDataCoffeeCard(filtered)
+  }
+
+  const totalPrice = dataCoffeeCard.reduce((acc, item) => {
+    const parse = item.price.replace(',', '.')
+    return acc + Number(parse)
+  }, 0)
+
+  const formattedPrice = totalPrice.toFixed(2).replace('.', ',').padEnd(4, '0')
 
   return (
     <CheckoutContainer>
@@ -148,20 +186,43 @@ export default function Checkout() {
               </AddressTextDescription>
             </AddressTextContainer>
 
-            <WrapperCreditCard></WrapperCreditCard>
+            <WrapperCreditCard>
+              <PaymentCard
+                title="Cartão de crédito"
+                icon={CreditCard}
+                OnCreditCard={handleAddCardPaymentMethods}
+                isActive={paymentMethods === 'Cartão de crédito'}
+              />
+
+              <PaymentCard
+                title="Cartão de débito"
+                icon={Landmark}
+                OnCreditCard={handleAddCardPaymentMethods}
+                isActive={paymentMethods === 'Cartão de débito'}
+              />
+              <PaymentCard
+                title="Dinheiro"
+                icon={DollarSign}
+                OnCreditCard={handleAddCardPaymentMethods}
+                isActive={paymentMethods === 'Dinheiro'}
+              />
+            </WrapperCreditCard>
           </PaymentData>
         </FormContent>
 
         <div>
           <Title>Complete seu pedido</Title>
-          <ContainerCheckout>
-            <CoffeeCardCheckout />
-            <CoffeeCardCheckout />
 
-            <PriceWrapper>
-              <Text>Total de itens</Text>
-              <Text>R$ 29,70</Text>
-            </PriceWrapper>
+          <ContainerCheckout>
+            {dataCoffeeCard.map((coffee) => (
+              <CoffeeCardCheckout
+                key={coffee.id}
+                banner={coffee.image}
+                price={coffee.price}
+                title={coffee.title}
+                onRemove={() => handleOnRemove(coffee.id)}
+              />
+            ))}
 
             <PriceWrapper>
               <Text>Entrega</Text>
@@ -170,8 +231,9 @@ export default function Checkout() {
 
             <PriceWrapper>
               <Text variant="alt">Total</Text>
-              <Text variant="alt">R$ 33,20</Text>
+              <Text variant="alt">{formattedPrice}</Text>
             </PriceWrapper>
+
             <ButtonConfirm
               type="submit"
               onClick={handleSubmit(handleSubmitForm)}

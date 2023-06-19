@@ -16,9 +16,17 @@ export const Container = styled('button', {
 
   border: '1px solid transparent',
 
-  '&:active': {
-    backgroundColor: 'transparent',
-    border: '1px solid $purple',
+  variants: {
+    isActive: {
+      true: {
+        backgroundColor: 'transparent',
+        border: '1px solid $purple',
+      },
+      false: {
+        // Estilos para quando o componente não está ativo
+        // Por exemplo, backgroundColor, border, etc.
+      },
+    },
   },
 
   span: {

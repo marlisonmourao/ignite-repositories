@@ -35,7 +35,7 @@ export function PriceActions({
             <Minus size={14} />
           </button>
 
-          <span style={{ marginTop: -1 }}>{quantity}</span>
+          <span style={{ marginTop: -4 }}>{quantity}</span>
 
           <button onClick={onIncrease}>
             <Plus size={14} />

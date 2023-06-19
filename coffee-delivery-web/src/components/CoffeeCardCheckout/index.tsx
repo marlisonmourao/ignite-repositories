@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import {
   ActionsButton,
@@ -12,16 +11,21 @@ import {
   Title,
 } from './styles'
 
-import CoffeeImage from '../../assets/CoffeImg.png'
+interface Props {
+  banner: string
+  title: string
+  price: string
+  onRemove: () => void
+}
 
-export function CoffeeCardCheckout() {
+export function CoffeeCardCheckout({ banner, price, title, onRemove }: Props) {
   return (
     <Container>
       <CoffeeSelectContainer>
-        <Image src={CoffeeImage} alt="" />
+        <img src={`/products/${banner}`} width={80} height={80} alt="" />
 
         <Details>
-          <Title>Expresso Tradicional</Title>
+          <Title>{title}</Title>
           <Counter>
             <ActionsButton>
               <button>
@@ -33,13 +37,13 @@ export function CoffeeCardCheckout() {
               </button>
             </ActionsButton>
 
-            <ActionsButtonRemove>
+            <ActionsButtonRemove onClick={onRemove}>
               <Trash2 size={11} />
               <span>REMOVER</span>
             </ActionsButtonRemove>
           </Counter>
         </Details>
-        <Price>R$ 9,90</Price>
+        <Price>R$ {price}</Price>
       </CoffeeSelectContainer>
 
       <Separator />

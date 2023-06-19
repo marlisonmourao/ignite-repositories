@@ -15,7 +15,7 @@ import CoffeImg from '../../assets/CoffeImg.png'
 import { ItemIcon } from '@/components/ItemIcon'
 import { CoffeeCard } from '@/components/CoffeeCard'
 import { iconsHero } from '@/utils/iconsHero'
-import { dataCoffee } from '@/utils/dataCoffee'
+import { dataCoffee } from '../../utils/dataCoffee'
 
 export default function Home() {
   return (

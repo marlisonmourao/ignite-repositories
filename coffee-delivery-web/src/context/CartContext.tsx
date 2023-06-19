@@ -8,6 +8,8 @@ interface CartItem extends CoffeeDataProps {
 interface CartContextProps {
   numberNotification: number
   addCart: (coffeeData: CartItem) => void
+  dataCoffeeCard: CartItem[]
+  setDataCoffeeCard: React.Dispatch<React.SetStateAction<CartItem[]>>
 }
 
 export const CartContext = createContext({} as CartContextProps)
@@ -65,6 +67,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         numberNotification,
         addCart,
+        dataCoffeeCard,
+        setDataCoffeeCard,
       }}
     >
       {children}
