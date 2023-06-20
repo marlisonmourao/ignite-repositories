@@ -8,6 +8,10 @@ interface CartItem extends CoffeeDataProps {
 interface CartContextProps {
   numberNotification: number
   addCart: (coffeeData: CartItem) => void
+  changeCartChangeItem: (
+    coffeeId: string,
+    type: 'increase' | 'decrease',
+  ) => void
   dataCoffeeCard: CartItem[]
   setDataCoffeeCard: React.Dispatch<React.SetStateAction<CartItem[]>>
 }
@@ -44,6 +48,27 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function changeCartChangeItem(
+    coffeeId: string,
+    type: 'increase' | 'decrease',
+  ) {
+    const newCart = produce(dataCoffeeCard, (draft) => {
+      const product = dataCoffeeCard.findIndex((item) => item.id === coffeeId)
+
+      if (product >= 0) {
+        const item = draft[product]
+        draft[product].quantity =
+          type === 'increase' ? item.quantity + 1 : item.quantity - 1
+      }
+    })
+
+    localStorage.setItem(
+      'coffeeDelivery:dataCoffeeCard',
+      JSON.stringify(newCart),
+    )
+    setDataCoffeeCard(newCart)
+  }
+
   async function loadDataCoffee() {
     try {
       const data = await localStorage.getItem('coffeeDelivery:dataCoffeeCard')
@@ -69,6 +94,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addCart,
         dataCoffeeCard,
         setDataCoffeeCard,
+        changeCartChangeItem,
       }}
     >
       {children}

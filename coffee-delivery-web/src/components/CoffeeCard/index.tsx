@@ -3,6 +3,7 @@ import { CoffeeContainer, CoffeeTag, Description, Title } from './styles'
 
 import { useState } from 'react'
 import { PriceActions } from '../PriceActions'
+import { formatMoney } from '@/utils/formatMoney'
 
 export interface CoffeeDataProps {
   id: string
@@ -10,7 +11,7 @@ export interface CoffeeDataProps {
   tag: string
   title: string
   description: string
-  price: string
+  price: number
 }
 
 interface Props {
@@ -38,6 +39,7 @@ export function CoffeeCard({ data }: Props) {
   function handleOnIncrease() {
     setQuantity((prev) => prev + 1)
   }
+
   return (
     <CoffeeContainer>
       <img src={`/products/${data.image}`} alt="" width={120} height={120} />
@@ -49,7 +51,7 @@ export function CoffeeCard({ data }: Props) {
       <Description>{data.description}</Description>
 
       <PriceActions
-        price="9,90"
+        price={formatMoney(data.price)}
         quantity={quantity}
         onAddToCard={handleAddCart}
         onDecrease={handleOnDecrease}

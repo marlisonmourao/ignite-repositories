@@ -15,10 +15,21 @@ interface Props {
   banner: string
   title: string
   price: string
+  quantity: number
   onRemove: () => void
+  onIncreased: () => void
+  onDecreased: () => void
 }
 
-export function CoffeeCardCheckout({ banner, price, title, onRemove }: Props) {
+export function CoffeeCardCheckout({
+  banner,
+  price,
+  title,
+  quantity,
+  onRemove,
+  onDecreased,
+  onIncreased,
+}: Props) {
   return (
     <Container>
       <CoffeeSelectContainer>
@@ -28,11 +39,11 @@ export function CoffeeCardCheckout({ banner, price, title, onRemove }: Props) {
           <Title>{title}</Title>
           <Counter>
             <ActionsButton>
-              <button>
+              <button disabled={quantity <= 1} onClick={onDecreased}>
                 <Minus size={11} />
               </button>
-              <span>1</span>
-              <button>
+              <span>{quantity}</span>
+              <button onClick={onIncreased}>
                 <Plus size={11} />
               </button>
             </ActionsButton>

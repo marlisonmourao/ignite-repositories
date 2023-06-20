@@ -30,6 +30,7 @@ import { Input } from '@/components/Input/styles'
 import { CoffeeCardCheckout } from '@/components/CoffeeCardCheckout'
 import { PaymentCard } from '@/components/PaymentCard'
 import { useCartContext } from '@/context/useCartContex'
+import { formatMoney } from '@/utils/formatMoney'
 
 const formSchema = z.object({
   cep: z.string().min(8, 'Informe um CEP válido'),
@@ -46,7 +47,8 @@ type typeFormSchema = z.infer<typeof formSchema>
 export default function Checkout() {
   const [paymentMethods, setPaymentMethods] = useState('')
 
-  const { dataCoffeeCard, setDataCoffeeCard } = useCartContext()
+  const { dataCoffeeCard, setDataCoffeeCard, changeCartChangeItem } =
+    useCartContext()
 
   const {
     register,
@@ -69,6 +71,14 @@ export default function Checkout() {
     setPaymentMethods(title)
   }
 
+  function handleIncreased(id: string) {
+    changeCartChangeItem(id, 'increase')
+  }
+
+  function handleDecreased(id: string) {
+    changeCartChangeItem(id, 'decrease')
+  }
+
   async function handleOnRemove(id: string) {
     const data = await localStorage.getItem('coffeeDelivery:dataCoffeeCard')
 
@@ -85,11 +95,8 @@ export default function Checkout() {
   }
 
   const totalPrice = dataCoffeeCard.reduce((acc, item) => {
-    const parse = item.price.replace(',', '.')
-    return acc + Number(parse)
+    return acc + item.price * item.quantity
   }, 0)
-
-  const formattedPrice = totalPrice.toFixed(2).replace('.', ',').padEnd(4, '0')
 
   return (
     <CheckoutContainer>
@@ -218,9 +225,12 @@ export default function Checkout() {
               <CoffeeCardCheckout
                 key={coffee.id}
                 banner={coffee.image}
-                price={coffee.price}
+                price={formatMoney(coffee.price * coffee.quantity)}
                 title={coffee.title}
+                quantity={coffee.quantity}
                 onRemove={() => handleOnRemove(coffee.id)}
+                onIncreased={() => handleIncreased(coffee.id)}
+                onDecreased={() => handleDecreased(coffee.id)}
               />
             ))}
 
@@ -231,7 +241,7 @@ export default function Checkout() {
 
             <PriceWrapper>
               <Text variant="alt">Total</Text>
-              <Text variant="alt">{formattedPrice}</Text>
+              <Text variant="alt">R$ {formatMoney(totalPrice)}</Text>
             </PriceWrapper>
 
             <ButtonConfirm
