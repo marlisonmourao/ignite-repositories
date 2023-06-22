@@ -38,8 +38,6 @@ O SavePass é o desafio principal do Capítulo 2 do bootcamp Ignite da trilha co
 
 Além disso, revisamos estruturas com Try-Catch, ou seja, tratamos possíveis erros que podem ocorrer durante a execução de uma requisição, uso de métodos como include dentre outros.
 
-</br>
-
 ### 🛠️ Nesse projeto foi utilizado
 
 - Expo
@@ -48,8 +46,6 @@ Além disso, revisamos estruturas com Try-Catch, ou seja, tratamos possíveis er
 - AsyncStorage
 - React Navigation
 - React-native-uuid
-
-</br>
 
 <div style="display: flex; gap: 12px; align-items: center">
   <a href="https://github.com/marlisonmourao/ignite-repositories/tree/main/savepass-rn" target="_blank">
