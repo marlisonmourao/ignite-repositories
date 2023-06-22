@@ -24,7 +24,7 @@ Durante este desafio, utilizamos os conceitos básicos do React Native desenvolv
     <img src="https://user-images.githubusercontent.com/71772559/178192378-234b9c46-7e31-47fb-8ddf-245617d8b198.png" />
   </a>
 
-  <a href="https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate" target="_blank">
+  <a href="https://www.figma.com/file/ZpJKrhheuFfuoWpXswecAk/to.do-(Copy)?type=design&node-id=10485-499&mode=design&t=fMPJUNikzqGMlbHH-0" target="_blank">
     <img src="https://user-images.githubusercontent.com/71772559/178192253-4fe4757c-de57-4878-a38c-a483c25670b1.png" />
   </a>    
 </div>
