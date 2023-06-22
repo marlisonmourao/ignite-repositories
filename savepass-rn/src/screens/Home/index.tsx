@@ -34,7 +34,7 @@ export function Home() {
 
     const storage = await AsyncStorage.getItem(dataKey)
 
-    const user = storage ? JSON.parse(storage) : null
+    const user = storage ? JSON.parse(storage) : []
 
    setData(user)
    setSearchListData(user)
@@ -54,10 +54,10 @@ export function Home() {
    setSearchListData(filteredData);
   }
 
-  // function handleChangeInputText(text: string) {
-  //   // Update searchText value
-  //   setSearchText(text)
-  // }
+  function handleChangeInputText(text: string) {
+    // Update searchText value
+    setSearchText(text)
+  }
 
   useFocusEffect(useCallback(() => {
     loadData()
@@ -84,10 +84,10 @@ export function Home() {
         <Metadata>
           <Title>Suas senhas</Title>
           <TotalPassCount>
-            {/* {searchListData.length
+            {searchListData.length
               ? `${`${searchListData.length}`.padStart(2, '0')} ao total`
               : 'Nada a ser exibido'
-            } */} 2
+            } 
           </TotalPassCount>
         </Metadata>
 
