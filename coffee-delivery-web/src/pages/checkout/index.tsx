@@ -31,6 +31,7 @@ import { CoffeeCardCheckout } from '@/components/CoffeeCardCheckout'
 import { PaymentCard } from '@/components/PaymentCard'
 import { useCartContext } from '@/context/useCartContex'
 import { formatMoney } from '@/utils/formatMoney'
+import { useRouter } from 'next/router'
 
 const formSchema = z.object({
   cep: z.string().min(8, 'Informe um CEP válido'),
@@ -50,6 +51,8 @@ export default function Checkout() {
   const { dataCoffeeCard, setDataCoffeeCard, changeCartChangeItem } =
     useCartContext()
 
+  const navigate = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -59,12 +62,23 @@ export default function Checkout() {
   })
 
   function handleSubmitForm(data: typeFormSchema) {
+    if (!paymentMethods) {
+      return
+    }
+
     const newData = {
       ...data,
       paymentMethods,
     }
 
-    console.log(newData)
+    localStorage.setItem(
+      '@coffeeDelivery:dataCoffeeForm',
+      JSON.stringify(newData),
+    )
+
+    setDataCoffeeCard([])
+
+    navigate.push('/success')
   }
 
   function handleAddCardPaymentMethods(title: string) {
