@@ -5,7 +5,13 @@ export const ContainerHeader = styled('header', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  backgroundColor: '$background',
   padding: '2rem 11rem',
+  position: 'sticky',
+
+  top: 0,
+  left: 0,
+  zIndex: 5,
 })
 
 export const Actions = styled('div', {
