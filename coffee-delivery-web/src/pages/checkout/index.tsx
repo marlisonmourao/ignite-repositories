@@ -76,9 +76,8 @@ export default function Checkout() {
       JSON.stringify(newData),
     )
 
-    setDataCoffeeCard([])
-
     navigate.push('/success')
+    setDataCoffeeCard([])
   }
 
   function handleAddCardPaymentMethods(title: string) {
@@ -255,7 +254,7 @@ export default function Checkout() {
 
             <PriceWrapper>
               <Text variant="alt">Total</Text>
-              <Text variant="alt">R$ {formatMoney(totalPrice)}</Text>
+              <Text variant="alt">R$ {formatMoney(totalPrice + 3.5)}</Text>
             </PriceWrapper>
 
             <ButtonConfirm

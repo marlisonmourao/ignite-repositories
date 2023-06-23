@@ -4,16 +4,13 @@ import { FlatList, SectionList, Text } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { Container, HeaderList, Label } from './styles'
+import { Container, Label } from './styles'
 
 import { UserAndLogo } from '@components/UserAndLogo'
 import { PorcentCard } from '@components/PorcentCard'
 import { DayCard } from '@components/DayCard'
 import { Button } from '@components/Button'
-import { Loading } from '@components/Loading'
 
-import { HistoryByDayDTO } from '@dtos/historyByDayDTO'
-import { DAYLI_DIET_CONFIG } from '@storage/dayliDietConfig'
 import { CalcPorcentDiet } from '@utils/calcPorcentDiet'
 import { getStorageDayli } from '@storage/dayliDietStorage'
 import { DailyProps } from 'src/@types/dayliProps'
