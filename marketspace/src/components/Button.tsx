@@ -1,14 +1,16 @@
-import { Button as NativeBaseButton, Text } from 'native-base'
-
+import React from 'react'
+import { HStack, Button as NativeBaseButton, Text } from 'native-base'
+import { IconProps } from 'phosphor-react-native'
 interface Props {
   variant?: 'black' | 'blue' | 'gray'
   title: string
+  icon?: React.ComponentType<IconProps>
 }
 
-export function Button({ variant = 'gray', title }: Props) {
+export function Button({ variant = 'gray', title, icon: Icon }: Props) {
   return (
     <NativeBaseButton
-      w="full"
+      flex={1}
       padding={3}
       borderRadius={6}
       bg={
@@ -27,14 +29,31 @@ export function Button({ variant = 'gray', title }: Props) {
             : 'gray.200',
       }}
     >
-      <Text
-        color={
-          variant === 'blue' || variant === 'black' ? 'gray.700' : 'gray.200'
-        }
-        fontFamily="bold"
-      >
-        {title}
-      </Text>
+      {Icon ? (
+        <HStack space={2}>
+          <Icon size={20} color="#FFFFFF" />
+
+          <Text
+            color={
+              variant === 'blue' || variant === 'black'
+                ? 'gray.700'
+                : 'gray.200'
+            }
+            fontFamily="bold"
+          >
+            {title}
+          </Text>
+        </HStack>
+      ) : (
+        <Text
+          color={
+            variant === 'blue' || variant === 'black' ? 'gray.700' : 'gray.200'
+          }
+          fontFamily="bold"
+        >
+          {title}
+        </Text>
+      )}
     </NativeBaseButton>
   )
 }
