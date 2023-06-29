@@ -7,7 +7,7 @@ import {
 
 import { Loading } from '@components/Loading'
 import { theme } from './src/theme'
-import { SignUp } from '@screens/SignUp'
+import { Home } from '@screens/Home'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,7 +23,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <SignUp /> : <Loading />}
+      {fontsLoaded ? <Home /> : <Loading />}
     </NativeBaseProvider>
   )
 }
